@@ -13,3 +13,5 @@ COPY . .
 # finally run our command to start up our project with CMD with 
 # npm & run & start
 CMD ["npm", "run", "start"]
+
+# as builder
