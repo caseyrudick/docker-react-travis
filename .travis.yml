@@ -1,0 +1,16 @@
+language: generic
+# need super level permissions
+sudo: required
+# need the following services ready to go
+services:
+  - docker 
+# following needs to execute before running our test.  Ex. build the docker image
+before_install:
+  - docker build -t landshark42/frontend -f Dockerfile.dev .
+# series of commands that get executed when our test is ran
+# if Travis ever gets a return status code of anything other than 0,
+# Travis is going to assume our bill failed, or our tests failed to run
+# properly
+# coverage lets this exit
+script:
+  - docker run -e CI=true landshark42/frontend npm run test -- --coverage
