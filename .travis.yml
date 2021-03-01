@@ -29,7 +29,8 @@ deploy:
 	# with all the files index.html & main.js  
 	# you specify it here, same as the app name
 	bucket_path: "docker-frontend"
-	on:
-		branch: master
-	access_key_id: $AWS_ACCESS_KEY
-	secret_access_key: $AWS_SECRET_KEY
+ # bucket_path: 'docker'
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
