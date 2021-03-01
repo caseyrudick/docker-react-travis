@@ -14,7 +14,7 @@ before_install:
 # coverage lets this exit
 script:
   - docker run -e CI=true landshark42/frontend npm run test -- --coverage
-
+#
 deploy:
 	provider: elasticbeanstalk
 	region: "us-east-2"
