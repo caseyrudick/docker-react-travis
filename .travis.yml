@@ -14,3 +14,18 @@ before_install:
 # coverage lets this exit
 script:
   - docker run -e CI=true landshark42/frontend npm run test -- --coverage
+
+deploy:
+	provider: elasticbeanstalk
+	region: "us-east-2"
+	app: "docker-frontend"
+	# the actual app running inside of EB is referred to as an environment 
+	# instead of an app
+	env: "Dockerfrontend-env"
+	#bucket is in s3
+	bucket_name: "elasticbeanstalk-us-east-2-367069199586v"
+	# this bcket is going to resused for all the EB enviro's.  
+	# So need to add path for our project name, which is the folder 
+	# with all the files index.html & main.js  
+	# you specify it here, same as the app name
+	bucket_path: "docker-frontend"
