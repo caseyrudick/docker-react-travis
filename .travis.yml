@@ -29,3 +29,4 @@ deploy:
 	# with all the files index.html & main.js  
 	# you specify it here, same as the app name
 	bucket_path: "docker-frontend"
+	##
