@@ -46,14 +46,14 @@ before_install:
 script:
   - docker run -e CI=true landshark42/frontend npm run test
 
-# deploy:
-#   provider: elasticbeanstalk
-#   region: 'us-east-1'
-#   app: 'docker'
-#   env: 'docker-env'
-#   bucket_name: "elasticbeanstalk-us-east-2-367069199586v"
-#   bucket_path: 'docker'
-#   on:
-#     branch: master
-#   access_key_id: $AWS_ACCESS_KEY
-#   secret_access_key: $AWS_SECRET_KEY
+deploy:
+  provider: elasticbeanstalk
+  region: 'us-east-2'
+  app: 'docker-frontend'
+  env: 'Dockerfrontend-env'
+  bucket_name: "elasticbeanstalk-us-east-2-367069199586"
+	bucket_path: 'docker-frontend'
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
