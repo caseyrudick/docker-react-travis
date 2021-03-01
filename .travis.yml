@@ -1,36 +1,59 @@
-language: generic
-# need super level permissions
+# language: generic
+# # need super level permissions
+# sudo: required
+# # need the following services ready to go
+# services:
+#   - docker 
+# # following needs to execute before running our test.  Ex. build the docker image
+# before_install:
+#   - docker build -t landshark42/frontend -f Dockerfile.dev .
+# # series of commands that get executed when our test is ran
+# # if Travis ever gets a return status code of anything other than 0,
+# # Travis is going to assume our bill failed, or our tests failed to run
+# # properly
+# # coverage lets this exit
+# script:
+#   - docker run -e CI=true landshark42/frontend npm run test -- --coverage
+# #
+# deploy:
+# 	# provider: elasticbeanstalk
+# 	# region: "us-east-2"
+# 	# app: "docker-frontend"
+# 	# the actual app running inside of EB is referred to as an environment 
+# 	# instead of an app
+# 	# env: "Dockerfrontend-env"
+# 	#bucket is in s3
+# 	# bucket_name: "elasticbeanstalk-us-east-2-367069199586v"
+# 	# this bcket is going to resused for all the EB enviro's.  
+# 	# So need to add path for our project name, which is the folder 
+# 	# with all the files index.html & main.js  
+# 	# you specify it here, same as the app name
+# 	# bucket_path: "docker-frontend"
+#  # bucket_path: 'docker'
+#   on:
+#     branch: master
+#   access_key_id: $AWS_ACCESS_KEY
+#   secret_access_key: $AWS_SECRET_KEY
 sudo: required
-# need the following services ready to go
+language: generic
+
 services:
-  - docker 
-# following needs to execute before running our test.  Ex. build the docker image
+  - docker
+
 before_install:
   - docker build -t landshark42/frontend -f Dockerfile.dev .
-# series of commands that get executed when our test is ran
-# if Travis ever gets a return status code of anything other than 0,
-# Travis is going to assume our bill failed, or our tests failed to run
-# properly
-# coverage lets this exit
+
 script:
-  - docker run -e CI=true landshark42/frontend npm run test -- --coverage
-#
-deploy:
-	provider: elasticbeanstalk
-	region: "us-east-2"
-	app: "docker-frontend"
-	# the actual app running inside of EB is referred to as an environment 
-	# instead of an app
-	env: "Dockerfrontend-env"
-	#bucket is in s3
-	bucket_name: "elasticbeanstalk-us-east-2-367069199586v"
-	# this bcket is going to resused for all the EB enviro's.  
-	# So need to add path for our project name, which is the folder 
-	# with all the files index.html & main.js  
-	# you specify it here, same as the app name
-	bucket_path: "docker-frontend"
- # bucket_path: 'docker'
-  on:
-    branch: master
-  access_key_id: $AWS_ACCESS_KEY
-  secret_access_key: $AWS_SECRET_KEY
+  - docker run -e CI=true landshark42/frontend npm run test
+
+# deploy:
+#   provider: elasticbeanstalk
+#   region: 'us-east-1'
+#   app: 'docker'
+#   env: 'docker-env'
+#   bucket_name: "elasticbeanstalk-us-east-2-367069199586v"
+#   bucket_path: 'docker'
+#   on:
+#     branch: master
+#   access_key_id: $AWS_ACCESS_KEY
+#   secret_access_key: $AWS_SECRET_KEY
